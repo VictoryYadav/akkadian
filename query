@@ -1,0 +1,32 @@
+1)
+Select * from courses c where c.Stat=0 And  c.Topicid = 'T' 
+And c.VId = 'V'
+And c.CourseId IN (Select clvl.CourseId from CLvlDet clvl where ( clvl.LevelId = 'L1' OR clvl.LevelId='L2' ))
+And c.CourseId IN (Select clng.CourseId from CLngDet clng where ( clng.LngId = 'Lang1' OR clng.LngId='Lang2')  )
+And c.CourseId IN (Select cTyp.CourseId from CTypDet cTyp where ( cTyp.TypId = 'Typ1' OR cTyp.TypId = 'Typ2')  )
+And c.CourseId IN (Select cdur.CourseId  from CDurDet cdur where cdur.duration < 'Dur1' )
+
+2) result second query se aayega
+
+Select c.Rate, c.CourseId, cTyp.Rate, cLng.Rate from cTypdet cTyp, clngdet clng , courses c where c.courseId=cTyp.courseId and c.courseId=cLng.courseId and  (c.courseId=C1 OR c.courseId=C2 OR c.courseId=C3)
+
+
+
+Select * from courses c where c.Stat=0 And  c.Topicid = '1' 
+And c.VId = '1'
+And c.CourseId IN (Select clvl.CourseId from CLvlDet clvl where ( clvl.LevelId = '2' OR clvl.LevelId='2' ))
+And c.CourseId IN (Select clng.CourseId from CLngDet clng where ( clng.LngId = '2' OR clng.LngId='2')  )
+And c.CourseId IN (Select cTyp.CourseId from CTypDet cTyp where ( cTyp.TypId = '2' OR cTyp.TypId = '3')  )
+And c.CourseId IN (Select cdur.CourseId  from CDurDet cdur where cdur.duration < 6 )
+
+
+This query seems to be working
+Select * from courses c where c.Stat=0 and TopicId=1 And c.CourseId IN (Select clvl.CourseId from CLvlDet clvl where ( clvl.LevelId = 2 OR clvl.LevelId=3 )) And c.CourseId IN (Select clng.CourseId from CLngDet clng where ( clng.LngId = 1 OR clng.LngId=3) ) And c.CourseId IN (Select cTyp.CourseId from CTypDet cTyp where ( cTyp.TypId = 1 OR cTyp.TypId = 2) ) And c.CourseId IN (Select cdur.CourseId from CDurDet cdur where cdur.duration < 8 )
+
+
+
+
+
+
+
+
